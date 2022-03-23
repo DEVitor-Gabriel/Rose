@@ -1,6 +1,8 @@
 import requests
 import json
 
+from cria_audios import cria_audio
+
 def cotacao_moeda(moeda):
     cotacoes = requests.get('https://economia.awesomeapi.com.br/json/all')
     cotacoes_dic = cotacoes.json()
@@ -16,10 +18,12 @@ def cotacao_moeda(moeda):
 
     if moeda == 'usd':
         dolar_list = dolar.strip('.')
-        msg = f'O valor do dólar hoje é {dolar_list[0]}'
+        msg = f'O valor do dólar hoje é {dolar_list[0]} R$ e {dolar_list[1]} Centavos'
+        cria_audio('moeda', msg)
 
-    print(dolar)
-    print(euro)
-    print(bitcoin)
+
+    # print(dolar)
+    # print(euro)
+    # print(bitcoin)
 
 cotacao_moeda('usd')
