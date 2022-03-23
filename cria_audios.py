@@ -3,8 +3,8 @@ from toca_audio import toca_audio
 import os
 
 
-def cria_audio(audio):
-    path = 'audios/Mensagem Dinamica.mp3'
+def cria_audio(nome,audio):
+    path = f'audios/{nome}.mp3'
 
     tts = gTTS(audio, lang='pt-br')
 
@@ -19,4 +19,4 @@ def cria_audio(audio):
     # call(['aplay','audios/hello.mp3'])  # Linux
     # playsound('audios/Mensagem Dinamica.mp3')# Windows
 
-# cria_audio(msg)
+# cria_audio('invalido','Eu não sou obrigada a isso!')

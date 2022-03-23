@@ -5,6 +5,7 @@ import unidecode
 from playsound import playsound #WINDOWS
 
 from comandos.noticias import ultimas_noticias
+from cria_audios import cria_audio
 
 hotword = 'ana'
 
@@ -19,7 +20,7 @@ def monitora_mic():
             try:
                 trigger = mic.recognize_google(audio, language='pt-BR')
                 trigger = trigger.lower()
-                trigger = unidecode.unidecode(trigger)
+                # trigger = unidecode.unidecode(trigger)
                 if hotword in trigger:
                     print('Comando: ', trigger)
                     responde('espera ai')
@@ -39,8 +40,13 @@ def responde(arquivo):
     # toca_audio(arquivo)
 
 def executa_comando(trigger):
-    if 'noticias' in trigger:
-         ultimas_noticias()
+    if 'notícias' in trigger:
+         ultimas_noticias(hotword)
+    else:
+        resposta = trigger.strip(hotword)
+        cria_audio('resposta',resposta)
+        print('Comando invalido')
+        responde('comando_invalido')
 
 def main():
     while True:
