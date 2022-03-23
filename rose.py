@@ -5,6 +5,8 @@ import unidecode
 from playsound import playsound #WINDOWS
 
 from comandos.noticias import ultimas_noticias
+from comandos.playlists import playlist
+from comandos.previsao_tempo import previsao_tempo
 from cria_audios import cria_audio
 
 hotword = 'ana'
@@ -41,7 +43,17 @@ def responde(arquivo):
 
 def executa_comando(trigger):
     if 'notícias' in trigger:
-         ultimas_noticias(hotword)
+        ultimas_noticias(hotword)
+
+    elif 'toca' in trigger and 'costa gold' in trigger:
+        playlist('costa_gold')
+
+    elif 'tempo agora' in trigger or 'temperatura agora' in trigger:
+        previsao_tempo(temp=True)
+    
+    elif 'temperatura' in trigger:
+        previsao_tempo(minmax=True)
+
     else:
         resposta = trigger.strip(hotword)
         cria_audio('resposta',resposta)
