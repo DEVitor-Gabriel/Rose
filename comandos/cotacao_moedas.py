@@ -17,8 +17,21 @@ def cotacao_moeda(moeda):
     bitcoin = f'{float(bitcoin):_.3f}'
 
     if moeda == 'usd':
-        dolar_list = dolar.strip('.')
+        dolar_list = dolar.split('.')
         msg = f'O valor do dólar hoje é {dolar_list[0]} R$ e {dolar_list[1]} Centavos'
+        # print(msg)
+        cria_audio('moeda', msg)
+    
+    if moeda == 'eur':
+        euro_list = euro.split('.')
+        msg = f'O valor do Euro hoje é {euro_list[0]} R$ e {euro_list[1]} Centavos'
+        # print(msg)
+        cria_audio('moeda', msg)
+
+    if moeda == 'btc':
+        btc_list = bitcoin.split('.')
+        msg = f'O valor do Bitcoin hoje é {btc_list[0]} mil e {btc_list[1]} R$'
+        # print(msg)
         cria_audio('moeda', msg)
 
 
@@ -26,4 +39,4 @@ def cotacao_moeda(moeda):
     # print(euro)
     # print(bitcoin)
 
-cotacao_moeda('usd')
+# cotacao_moeda('usd')
