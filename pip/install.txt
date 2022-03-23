@@ -1,0 +1,6 @@
+gtts
+playsound==1.2.2
+speechRecognition
+unidecode
+pipwin
+    pipwin install pyaudio
