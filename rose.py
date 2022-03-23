@@ -2,7 +2,8 @@ import speech_recognition as sr
 from playsound import playsound
 import unidecode
 #from subprocess import call #MAC / LINUX
-from playsound import playsound #WINDOWS
+from playsound import playsound
+from comandos.cotacao_moedas import cotacao_moeda #WINDOWS
 
 from comandos.noticias import ultimas_noticias
 from comandos.playlists import playlist
@@ -16,12 +17,15 @@ def monitora_mic():
     mic = sr.Recognizer()
     with sr.Microphone() as source:
         while True:
+            mic.adjust_for_ambient_noise(source)
+            # mic.dynamic_energy_adjustment_ratio = 4
             print('Aguardando o Comando: ')
             audio = mic.listen(source)
 
             try:
                 trigger = mic.recognize_google(audio, language='pt-BR')
                 trigger = trigger.lower()
+                # print(trigger)
                 # trigger = unidecode.unidecode(trigger)
                 if hotword in trigger:
                     print('Comando: ', trigger)
@@ -53,6 +57,15 @@ def executa_comando(trigger):
     
     elif 'temperatura' in trigger:
         previsao_tempo(minmax=True)
+
+    elif 'dólar' in trigger:
+        cotacao_moeda('usd')
+
+    elif 'euro' in trigger:
+        cotacao_moeda('eur')
+
+    elif 'bitcoin' in trigger:
+        cotacao_moeda('btc')
 
     else:
         resposta = trigger.strip(hotword)

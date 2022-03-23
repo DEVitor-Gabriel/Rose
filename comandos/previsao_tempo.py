@@ -11,7 +11,7 @@ PAIS = 'br'
 def previsao_tempo(temp=False, minmax=False):
     site = requests.get(f'https://api.openweathermap.org/data/2.5/weather?q={CIDADE},{PAIS}&appid={APPID}&units=metric&lang=pt')
     clima = site.json()
-    print(json.dumps(clima, indent=4))
+    # print(json.dumps(clima, indent=4))
     descricao = clima['weather'][0]['description']
     tempo = clima['main']['temp']
     tempo_max = clima['main']['temp_max']
