@@ -16,12 +16,15 @@ def monitora_mic():
     mic = sr.Recognizer()
     with sr.Microphone() as source:
         while True:
+            mic.adjust_for_ambient_noise(source)
+            # mic.dynamic_energy_adjustment_ratio = 4
             print('Aguardando o Comando: ')
             audio = mic.listen(source)
 
             try:
                 trigger = mic.recognize_google(audio, language='pt-BR')
                 trigger = trigger.lower()
+                # print(trigger)
                 # trigger = unidecode.unidecode(trigger)
                 if hotword in trigger:
                     print('Comando: ', trigger)
