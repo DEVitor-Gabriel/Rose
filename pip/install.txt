@@ -2,5 +2,7 @@ gtts
 playsound==1.2.2
 speechRecognition
 unidecode
+selenium
+tkinter
 pipwin
     pipwin install pyaudio

@@ -7,8 +7,10 @@ from comandos.cotacao_moedas import cotacao_moeda #WINDOWS
 
 from comandos.noticias import ultimas_noticias
 from comandos.playlists import playlist
+from comandos.pontomais import pontomais
 from comandos.previsao_tempo import previsao_tempo
 from cria_audios import cria_audio
+from datetime import datetime
 
 hotword = 'ana'
 
@@ -66,6 +68,20 @@ def executa_comando(trigger):
 
     elif 'bitcoin' in trigger:
         cotacao_moeda('btc')
+
+    elif 'bater o ponto' in trigger:
+        hr_atual = datetime.now().time()
+        hr_atual = str(hr_atual).split(':')
+
+        if (12 <= int(hr_atual[0]) <= 14):
+            pontomais()
+
+        elif(17 <= int(hr_atual[0]) <= 19):
+            pontomais()
+
+        else:
+            msg = 'Você não pode bater o ponto neste horário'
+            cria_audio('pontomais_erro',msg)
 
     else:
         resposta = trigger.strip(hotword)
