@@ -12,7 +12,7 @@ from comandos.previsao_tempo import previsao_tempo
 from cria_audios import cria_audio
 from datetime import datetime
 
-hotword = 'ana'
+hotword = 'rose'
 
 def monitora_mic():
 
